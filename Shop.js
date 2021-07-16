@@ -63,16 +63,27 @@ class Shop {
         }
     }
 
-    order(owner) {
+    order(owner, notification = true) {
         for (const order of this.ordersList) {
             if (order.owner === owner) {
-                console.log(order);
-                break;
+                if (notification) {
+                    console.log(order);
+                }
+                return order;
             }
         }
     }
 
-    orderPrice() {
+    orderPrice(owner) {
+        let totalPrice = 0;
+        const order = this.order(owner, false);
+
+        for (const item of order.items) {
+            const product = this.productList[item.id - 1];
+            totalPrice += item.count * product.price;
+        }
+
+        console.log(`${owner} order: ${this.formatPrice(totalPrice)}.`);
     }
 
     removeItem() {
