@@ -37,6 +37,12 @@ class Shop {
     }
 
     updatePrice(productName, productPriceInCents) {
+        for (const product of this.productList) {
+            if (product.name === productName) {
+                product.price = productPriceInCents;
+                break;
+            }
+        }
         console.log(`"${this.shopName}" updated price and sells ${productName} for ${this.formatPrice(productPriceInCents)} now!`);
     }
 
