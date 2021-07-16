@@ -96,8 +96,8 @@ onlineKioskas.pay('Augustas', 600);
 onlineKioskas.pay('Barbora', 550);
 // Thank you for purchasing at "Meskiuko kioskas"!
 
-// onlineKioskas.addItemToCart('Augustas', 2, 1);
-// // You can not add items to already paid cart!
+onlineKioskas.addItemToCart('Augustas', 3, 1);
+// You can not add items to already paid cart!
 
 // onlineKioskas.addItemToCart('John', 3, 1);
 // onlineKioskas.addItemToCart('John', 4, 2);

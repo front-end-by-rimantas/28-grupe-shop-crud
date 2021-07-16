@@ -51,18 +51,24 @@ class Shop {
     }
 
     createCart(owner) {
-        this.ordersList.push({ owner, items: [] });
+        this.ordersList.push({ owner, items: [], paid: false });
     }
 
     addItemToCart(owner, productNumber, productCount) {
         for (const order of this.ordersList) {
-            if (order.owner === owner &&
-                this.productList[productNumber - 1].forSale) {
-                order.items.push({
-                    id: productNumber,
-                    count: productCount
-                })
-                break;
+            if (order.owner === owner) {
+                if (order.paid) {
+                    console.log('You can not add items to already paid cart!');
+                    return;
+                }
+
+                if (this.productList[productNumber - 1].forSale) {
+                    order.items.push({
+                        id: productNumber,
+                        count: productCount
+                    })
+                    return;
+                }
             }
         }
     }
@@ -116,6 +122,13 @@ class Shop {
         }
         message += `Thank you for purchasing at "${this.shopName}"!`;
         console.log(message);
+
+        for (const order of this.ordersList) {
+            if (order.owner === owner) {
+                order.paid = true;
+                break;
+            }
+        }
     }
 
     shopSummary() {
