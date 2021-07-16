@@ -81,11 +81,11 @@ onlineKioskas.orderPrice('Augustas');
 onlineKioskas.orderPrice('Barbora');
 // Barbora order: 5.50 EUR.
 
-// onlineKioskas.removeItem('obuolys');
-// // No more obuolys at "Meskiuko kioskas"!
+onlineKioskas.removeItem('obuolys');
+// No more obuolys at "Meskiuko kioskas"!
 
-// onlineKioskas.removeItem('morka');
-// // No more obuolys at "Meskiuko kioskas"!
+onlineKioskas.removeItem('morka');
+// No more obuolys at "Meskiuko kioskas"!
 
 // onlineKioskas.pay('Augustas', 500);
 // // Need more money!

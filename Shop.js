@@ -86,7 +86,15 @@ class Shop {
         console.log(`${owner} order: ${this.formatPrice(totalPrice)}.`);
     }
 
-    removeItem() {
+    removeItem(productName) {
+        let stillForSale = [];
+        for (const product of this.productList) {
+            if (product.name !== productName) {
+                stillForSale.push(product);
+            }
+        }
+        this.productList = stillForSale;
+        console.log(`No more ${productName} at "${this.shopName}"!`);
     }
 
     pay() {
