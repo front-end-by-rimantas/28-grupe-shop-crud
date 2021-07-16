@@ -37,43 +37,43 @@ onlineKioskas.items();
 onlineKioskas.updatePrice('bulves', 90);
 // "Meskiuko kioskas" updated price and sells bulves for 0.90 EUR now!
 
-// onlineKioskas.createCart('Augustas');
-// // Augustas have an open cart at "Meskiuko kioskas"!
+onlineKioskas.createCart('Augustas');
+// Augustas have an open cart at "Meskiuko kioskas"!
 
-// onlineKioskas.createCart('Barbora');
-// // Barbora have an open cart at "Meskiuko kioskas"!
+onlineKioskas.createCart('Barbora');
+// Barbora have an open cart at "Meskiuko kioskas"!
 
-// onlineKioskas.addItemToCart('Augustas', 2, 1);
-// onlineKioskas.addItemToCart('Augustas', 4, 2);
-// onlineKioskas.addItemToCart('Augustas', 5, 1);
+onlineKioskas.addItemToCart('Augustas', 2, 1);
+onlineKioskas.addItemToCart('Augustas', 4, 2);
+onlineKioskas.addItemToCart('Augustas', 5, 1);
 
-// onlineKioskas.addItemToCart('Barbora', 1, 2);
-// onlineKioskas.addItemToCart('Barbora', 3, 1);
-// onlineKioskas.addItemToCart('Barbora', 5, 1);
+onlineKioskas.addItemToCart('Barbora', 1, 2);
+onlineKioskas.addItemToCart('Barbora', 3, 1);
+onlineKioskas.addItemToCart('Barbora', 5, 1);
 
-// onlineKioskas.order('Augustas');
-// /*
-// {
-//     owner: 'Augustas',
-//     items: [
-//         { id: 2, count: 1 },
-//         { id: 4, count: 2 },
-//         { id: 5, count: 1 },
-//     ]
-// }
-// */
+onlineKioskas.order('Augustas');
+/*
+{
+    owner: 'Augustas',
+    items: [
+        { id: 2, count: 1 },
+        { id: 4, count: 2 },
+        { id: 5, count: 1 },
+    ]
+}
+*/
 
-// onlineKioskas.order('Barbora');
-// /*
-// {
-//     owner: 'Barbora',
-//     items: [
-//         { id: 1, count: 2 },
-//         { id: 3, count: 1 },
-//         { id: 5, count: 1 },
-//     ]
-// }
-// */
+onlineKioskas.order('Barbora');
+/*
+{
+    owner: 'Barbora',
+    items: [
+        { id: 1, count: 2 },
+        { id: 3, count: 1 },
+        { id: 5, count: 1 },
+    ]
+}
+*/
 
 // onlineKioskas.orderPrice('Augustas');
 // // Augustas order: 5.30 EUR.

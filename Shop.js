@@ -3,6 +3,7 @@ class Shop {
         this.shopName = shopName;
         this.currency = currency;
         this.productList = [];
+        this.ordersList = [];
     }
 
     intro() {
@@ -46,13 +47,29 @@ class Shop {
         console.log(`"${this.shopName}" updated price and sells ${productName} for ${this.formatPrice(productPriceInCents)} now!`);
     }
 
-    createCart() {
+    createCart(owner) {
+        this.ordersList.push({ owner, items: [] });
     }
 
-    addItemToCart() {
+    addItemToCart(owner, productNumber, productCount) {
+        for (const order of this.ordersList) {
+            if (order.owner === owner) {
+                order.items.push({
+                    id: productNumber,
+                    count: productCount
+                })
+                break;
+            }
+        }
     }
 
-    order() {
+    order(owner) {
+        for (const order of this.ordersList) {
+            if (order.owner === owner) {
+                console.log(order);
+                break;
+            }
+        }
     }
 
     orderPrice() {
