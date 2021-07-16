@@ -9,19 +9,35 @@ class Shop {
         console.log(`Hi, we are "${this.shopName}".\nUse .items() method to get list of items to purchase.\nUse .order() method to get your order details.`);
     }
 
+    formatPrice(priceInCents) {
+        const price = (priceInCents / 100).toFixed(2);
+        return `${price} ${this.currency}`;
+    }
+
     addItem(productName, productPriceInCents) {
         this.productList.push({
             name: productName,
             price: productPriceInCents
         })
-        const price = (productPriceInCents / 100).toFixed(2);
-        console.log(`"${this.shopName}" sells ${productName} for ${price} ${this.currency} now!`);
+        console.log(`"${this.shopName}" sells ${productName} for ${this.formatPrice(productPriceInCents)} now!`);
+    }
+
+    capitalize(text) {
+        return text[0].toUpperCase() + text.slice(1);
     }
 
     items() {
+        console.log(`Items for sale at "${this.shopName}":`);
+        console.log(`====================`);
+        let index = 0;
+        for (const product of this.productList) {
+            console.log(`${++index}) ${this.capitalize(product.name)} - ${this.formatPrice(product.price)};`);
+        }
+        console.log(`====================`);
     }
 
-    updatePrice() {
+    updatePrice(productName, productPriceInCents) {
+        console.log(`"${this.shopName}" updated price and sells ${productName} for ${this.formatPrice(productPriceInCents)} now!`);
     }
 
     createCart() {
