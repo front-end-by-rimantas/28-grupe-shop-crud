@@ -87,14 +87,14 @@ onlineKioskas.removeItem('obuolys');
 onlineKioskas.removeItem('morka');
 // No more obuolys at "Meskiuko kioskas"!
 
-// onlineKioskas.pay('Augustas', 500);
-// // Need more money!
+onlineKioskas.pay('Augustas', 400);
+// Need more money!
 
-// onlineKioskas.pay('Augustas', 600);
-// // Here is your 0.70 EUR change!\nThank you for purchasing at "Meskiuko kioskas"!
+onlineKioskas.pay('Augustas', 600);
+// Here is your 1.60 EUR change!\nThank you for purchasing at "Meskiuko kioskas"!
 
-// onlineKioskas.pay('Barbora', 550);
-// // Thank you for purchasing at "Meskiuko kioskas"!
+onlineKioskas.pay('Barbora', 550);
+// Thank you for purchasing at "Meskiuko kioskas"!
 
 // onlineKioskas.addItemToCart('Augustas', 2, 1);
 // // You can not add items to already paid cart!

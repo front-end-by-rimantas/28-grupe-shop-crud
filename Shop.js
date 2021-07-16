@@ -18,7 +18,8 @@ class Shop {
     addItem(productName, productPriceInCents) {
         this.productList.push({
             name: productName,
-            price: productPriceInCents
+            price: productPriceInCents,
+            forSale: true
         })
         console.log(`"${this.shopName}" sells ${productName} for ${this.formatPrice(productPriceInCents)} now!`);
     }
@@ -32,7 +33,9 @@ class Shop {
         console.log(`====================`);
         let index = 0;
         for (const product of this.productList) {
-            console.log(`${++index}) ${this.capitalize(product.name)} - ${this.formatPrice(product.price)};`);
+            if (product.forSale) {
+                console.log(`${++index}) ${this.capitalize(product.name)} - ${this.formatPrice(product.price)};`);
+            }
         }
         console.log(`====================`);
     }
@@ -53,7 +56,8 @@ class Shop {
 
     addItemToCart(owner, productNumber, productCount) {
         for (const order of this.ordersList) {
-            if (order.owner === owner) {
+            if (order.owner === owner &&
+                this.productList[productNumber - 1].forSale) {
                 order.items.push({
                     id: productNumber,
                     count: productCount
@@ -74,7 +78,7 @@ class Shop {
         }
     }
 
-    orderPrice(owner) {
+    orderPrice(owner, notification = true) {
         let totalPrice = 0;
         const order = this.order(owner, false);
 
@@ -83,21 +87,35 @@ class Shop {
             totalPrice += item.count * product.price;
         }
 
-        console.log(`${owner} order: ${this.formatPrice(totalPrice)}.`);
+        if (notification) {
+            console.log(`${owner} order: ${this.formatPrice(totalPrice)}.`);
+        }
+        return totalPrice;
     }
 
     removeItem(productName) {
-        let stillForSale = [];
         for (const product of this.productList) {
             if (product.name !== productName) {
-                stillForSale.push(product);
+                product.forSale = false;
             }
         }
-        this.productList = stillForSale;
         console.log(`No more ${productName} at "${this.shopName}"!`);
     }
 
-    pay() {
+    pay(owner, cash) {
+        const price = this.orderPrice(owner, false);
+        if (price > cash) {
+            console.log('Need more money!');
+            return;
+        }
+
+        const change = cash - price;
+        let message = '';
+        if (change > 0) {
+            message += `Here is your ${this.formatPrice(change)} change!\n`;
+        }
+        message += `Thank you for purchasing at "${this.shopName}"!`;
+        console.log(message);
     }
 
     shopSummary() {
