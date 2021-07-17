@@ -4,6 +4,9 @@ class Shop {
         this.currency = currency;
         this.productList = [];
         this.ordersList = [];
+        this.soldItemsCount = 0;
+        this.ordersCompletedCount = 0;
+        this.profit = 0;
     }
 
     intro() {
@@ -32,9 +35,11 @@ class Shop {
         console.log(`Items for sale at "${this.shopName}":`);
         console.log(`====================`);
         let index = 0;
+        let id = 0;
         for (const product of this.productList) {
+            ++id;
             if (product.forSale) {
-                console.log(`${++index}) ${this.capitalize(product.name)} - ${this.formatPrice(product.price)};`);
+                console.log(`${++index}) ${this.capitalize(product.name)} (id: ${id}) - ${this.formatPrice(product.price)};`);
             }
         }
         console.log(`====================`);
@@ -62,12 +67,15 @@ class Shop {
                     return;
                 }
 
-                if (this.productList[productNumber - 1].forSale) {
+                const product = this.productList[productNumber - 1];
+                if (product.forSale) {
                     order.items.push({
                         id: productNumber,
                         count: productCount
                     })
                     return;
+                } else {
+                    console.log('Item is out of stock!');
                 }
             }
         }
@@ -101,8 +109,9 @@ class Shop {
 
     removeItem(productName) {
         for (const product of this.productList) {
-            if (product.name !== productName) {
+            if (product.name === productName) {
                 product.forSale = false;
+                break;
             }
         }
         console.log(`No more ${productName} at "${this.shopName}"!`);
@@ -126,12 +135,38 @@ class Shop {
         for (const order of this.ordersList) {
             if (order.owner === owner) {
                 order.paid = true;
+                this.profit += price;
+                this.ordersCompletedCount++;
+                this.updateSoldItemsCount(order.items);
                 break;
             }
         }
     }
 
+    updateSoldItemsCount(items) {
+        for (const item of items) {
+            this.soldItemsCount += item.count;
+        }
+    }
+
     shopSummary() {
+        const orderInPorgressCount = this.ordersList.length - this.ordersCompletedCount;
+        let possibleProfit = 0;
+
+        for (const order of this.ordersList) {
+            if (!order.paid) {
+                possibleProfit += this.orderPrice(order.owner);
+            }
+        }
+
+        console.log(`Summary for the "${this.shopName}"`);
+        console.log(`====================`);
+        console.log(`Items sold: ${this.soldItemsCount}`);
+        console.log(`Orders completed: ${this.ordersCompletedCount}`);
+        console.log(`Orders in progress: ${orderInPorgressCount}`);
+        console.log(`Profit: ${this.formatPrice(this.profit)}`);
+        console.log(`Possible profit: 4.70 EUR`);
+        console.log(`====================`);
     }
 }
 

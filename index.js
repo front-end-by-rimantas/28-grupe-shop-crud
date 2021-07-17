@@ -102,34 +102,36 @@ onlineKioskas.addItemToCart('Augustas', 3, 1);
 onlineKioskas.createCart('John');
 // John have an open cart at "Meskiuko kioskas"!
 
-// onlineKioskas.addItemToCart('John', 3, 1);
-// onlineKioskas.addItemToCart('John', 4, 2);
-// onlineKioskas.addItemToCart('John', 5, 1);
+onlineKioskas.addItemToCart('John', 3, 1);
+onlineKioskas.addItemToCart('John', 4, 2);
+onlineKioskas.addItemToCart('John', 5, 1);
 
-// onlineKioskas.addItemToCart('John', 1, 1);
-// // Item is out of stock!
+onlineKioskas.addItemToCart('John', 1, 1);
+// Item is out of stock!
 
-// onlineKioskas.order('John');
-// /*
-// {
-//     owner: 'John',
-//     items: [
-//         { id: 3, count: 1 },
-//         { id: 4, count: 2 },
-//         { id: 5, count: 1 },
-//     ]
-// }
-// */
+onlineKioskas.order('John');
+/*
+{
+    owner: 'John',
+    items: [
+        { id: 3, count: 1 },
+        { id: 4, count: 2 },
+        { id: 5, count: 1 },
+    ]
+}
+*/
 
-// onlineKioskas.orderPrice('John');
-// // Augustas order: 5.60 EUR.
+onlineKioskas.items();
 
-// onlineKioskas.shopSummary();
-// // Summary for the "Meskiuko kioskas"
-// // ====================
-// // Items sold: 12
-// // Orders completed: 2
-// // Orders in progress: 1
-// // Profit: 10.80 EUR
-// // Possible profit: 5.60 EUR
-// // ====================
+onlineKioskas.orderPrice('John');
+// Augustas order: 4.70 EUR.
+
+onlineKioskas.shopSummary();
+// Summary for the "Meskiuko kioskas"
+// ====================
+// Items sold: 12
+// Orders completed: 2
+// Orders in progress: 1
+// Profit: 10.80 EUR
+// Possible profit: 5.60 EUR
+// ====================
